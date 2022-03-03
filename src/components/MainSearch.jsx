@@ -1,9 +1,10 @@
-import { Component } from 'react'
+import React from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
-import Job from './Job'
+import JobResult from './JobResult'
 import uniqid from 'uniqid'
+import { Link } from 'react-router-dom'
 
-class MainSearch extends Component {
+export default class MainSearch extends React.Component {
 
     state = {
         query: '',
@@ -39,6 +40,7 @@ class MainSearch extends Component {
                 <Row>
                     <Col xs={10} className='mx-auto my-3'>
                         <h1>Remote Jobs Search</h1>
+                        <Link to="/favourites" className="btn btn-primary">Favourites</Link>
                     </Col>
                     <Col xs={10} className='mx-auto'>
                         <Form onSubmit={this.handleSubmit}>
@@ -47,7 +49,7 @@ class MainSearch extends Component {
                     </Col>
                     <Col xs={10} className='mx-auto mb-5'>
                         {
-                            this.state.jobs.map(jobData => <Job key={uniqid()} data={jobData} />)
+                            this.state.jobs.map(jobData => <JobResult key={uniqid()} data={jobData} />)
                         }
                     </Col>
                 </Row>
@@ -55,5 +57,3 @@ class MainSearch extends Component {
         )
     }
 }
-
-export default MainSearch
